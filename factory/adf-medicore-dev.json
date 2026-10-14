@@ -1,0 +1,15 @@
+{
+	"name": "adf-medicore-dev",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "91ad286c-d3ef-4e52-b5bc-03347de5a677",
+		"tenantId": "b5587048-a070-43ad-b654-20a31e9b2d99"
+	}
+}
