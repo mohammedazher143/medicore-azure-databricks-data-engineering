@@ -1,0 +1,20 @@
+# Azure Databricks
+
+This folder contains the transformation framework for the MediCore data engineering project.
+
+## Planned components
+
+- Bronze layer ingestion and raw data preservation
+- Silver layer data cleansing and standardization
+- Data quality validation and error handling
+- Gold layer dimensional modelling
+- Fact and dimension tables for analytics
+- Full and incremental processing
+- Reusable parameterized notebooks
+- Job execution monitoring and logging
+
+## Security
+
+- Do not commit credentials, access keys, or secrets.
+- Do not commit real patient data.
+- Use Azure managed identities and Key Vault where appropriate.
