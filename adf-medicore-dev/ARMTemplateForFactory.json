@@ -85,7 +85,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_LandingCsv')]",
+			"name": "[concat(parameters('factoryName'), '/ds_dynamic_csv_source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -94,10 +94,10 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"pFolderPath": {
+					"p_source_container": {
 						"type": "string"
 					},
-					"pFileName": {
+					"p_source_filename": {
 						"type": "string"
 					}
 				},
@@ -107,14 +107,13 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@dataset().pFileName",
+							"value": "@dataset().p_source_filename",
 							"type": "Expression"
 						},
-						"folderPath": {
-							"value": "@dataset().pFolderPath",
+						"fileSystem": {
+							"value": "@dataset().p_source_container",
 							"type": "Expression"
-						},
-						"fileSystem": "landing"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -125,6 +124,38 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS_Gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dynamic_sql_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQL_MediCore",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_target_schema": {
+						"type": "string"
+					},
+					"p_target_table": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().p_target_schema",
+						"type": "Expression"
+					},
+					"table": "@dataset().p_target_table"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQL_MediCore')]"
 			]
 		}
 	]
