@@ -1,0 +1,27 @@
+{
+	"name": "ds_dynamic_sql_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL_MediCore",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_target_schema": {
+				"type": "string"
+			},
+			"p_target_table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().p_target_schema",
+				"type": "Expression"
+			},
+			"table": "@dataset().p_target_table"
+		}
+	}
+}
