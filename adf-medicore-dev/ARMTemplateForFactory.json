@@ -69,7 +69,7 @@
 									"p_target_table": "PipelineMetadataRegistry"
 								}
 							},
-							"firstRowOnly": false
+							"firstRowOnly": true
 						}
 					},
 					{
