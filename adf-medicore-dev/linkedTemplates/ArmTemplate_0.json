@@ -120,7 +120,204 @@
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": []
+				"schema": [
+					{
+						"name": "Record ID",
+						"type": "String"
+					},
+					{
+						"name": "ERP Transaction ID",
+						"type": "String"
+					},
+					{
+						"name": "ERP Module",
+						"type": "String"
+					},
+					{
+						"name": "Branch Code",
+						"type": "String"
+					},
+					{
+						"name": "Fiscal Year",
+						"type": "String"
+					},
+					{
+						"name": "Fiscal Quarter",
+						"type": "String"
+					},
+					{
+						"name": "Created By",
+						"type": "String"
+					},
+					{
+						"name": "Patient ID",
+						"type": "String"
+					},
+					{
+						"name": "Patient Name",
+						"type": "String"
+					},
+					{
+						"name": "Date of Birth",
+						"type": "String"
+					},
+					{
+						"name": "Gender",
+						"type": "String"
+					},
+					{
+						"name": "Blood Group",
+						"type": "String"
+					},
+					{
+						"name": "Phone",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Allergies",
+						"type": "String"
+					},
+					{
+						"name": "Address",
+						"type": "String"
+					},
+					{
+						"name": "City",
+						"type": "String"
+					},
+					{
+						"name": "Doctor ID",
+						"type": "String"
+					},
+					{
+						"name": "Doctor Name",
+						"type": "String"
+					},
+					{
+						"name": "Specialization",
+						"type": "String"
+					},
+					{
+						"name": "Department ID",
+						"type": "String"
+					},
+					{
+						"name": "Department Name",
+						"type": "String"
+					},
+					{
+						"name": "Consultation Fee (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Appointment ID",
+						"type": "String"
+					},
+					{
+						"name": "Appointment Date",
+						"type": "String"
+					},
+					{
+						"name": "Appointment Time",
+						"type": "String"
+					},
+					{
+						"name": "Appointment Status",
+						"type": "String"
+					},
+					{
+						"name": "Chief Complaint",
+						"type": "String"
+					},
+					{
+						"name": "Diagnosis",
+						"type": "String"
+					},
+					{
+						"name": "Clinical Notes",
+						"type": "String"
+					},
+					{
+						"name": "Lab Test Name",
+						"type": "String"
+					},
+					{
+						"name": "Lab Result",
+						"type": "String"
+					},
+					{
+						"name": "Reference Range",
+						"type": "String"
+					},
+					{
+						"name": "Is Abnormal",
+						"type": "String"
+					},
+					{
+						"name": "Medicine Name",
+						"type": "String"
+					},
+					{
+						"name": "Dosage",
+						"type": "String"
+					},
+					{
+						"name": "Frequency",
+						"type": "String"
+					},
+					{
+						"name": "Duration (Days)",
+						"type": "String"
+					},
+					{
+						"name": "Lab Charge (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Medicine Charge (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Subtotal (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Discount (INR)",
+						"type": "String"
+					},
+					{
+						"name": "GST Amount (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Total Amount (INR)",
+						"type": "String"
+					},
+					{
+						"name": "Payment Mode",
+						"type": "String"
+					},
+					{
+						"name": "Payment Status",
+						"type": "String"
+					},
+					{
+						"name": "Insurance Provider",
+						"type": "String"
+					},
+					{
+						"name": "Policy Number",
+						"type": "String"
+					},
+					{
+						"name": "Coverage Limit (INR)",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS_Gen2')]"
