@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "fe_loop_through_metadata",
+				"name": "ForEach_Metadata",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -42,13 +42,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('lk_read_pipeline_metadata').output.value\n",
+						"value": "@activity('Lookup_Active_Metadata').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "copy_csv_to_staging",
+							"name": "Copy_Hospital_Raw",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -73,6 +73,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
+									"preCopyScript": "TRUNCATE TABLE stage.hospital_raw;",
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"disableMetricsCollection": false
@@ -80,6 +81,596 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Record ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Record ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "ERP Transaction ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "ERP Transaction ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "ERP Module",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "ERP Module",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Branch Code",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Branch Code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Fiscal Year",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Fiscal Year",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Fiscal Quarter",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Fiscal Quarter",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Created By",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Created By",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Patient ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Patient ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Patient Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Patient Name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Date of Birth",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Date of Birth",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Gender",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Gender",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Blood Group",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Blood Group",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Phone",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Phone",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Email",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Email",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Allergies",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Allergies",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Address",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Address",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "City",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "City",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Doctor ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Doctor ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Doctor Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Doctor Name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Specialization",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Specialization",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Department ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Department ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Department Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Department Name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Consultation Fee (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Consultation Fee (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Appointment ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Appointment ID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Appointment Date",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Appointment Date",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Appointment Time",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Appointment Time",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Appointment Status",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Appointment Status",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Chief Complaint",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Chief Complaint",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Diagnosis",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Diagnosis",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Clinical Notes",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Clinical Notes",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Lab Test Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Lab Test Name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Lab Result",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Lab Result",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Reference Range",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Reference Range",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Is Abnormal",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Is Abnormal",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Medicine Name",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Medicine Name",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Dosage",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Dosage",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Frequency",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Frequency",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Duration (Days)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Duration (Days)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Lab Charge (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Lab Charge (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Medicine Charge (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Medicine Charge (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Subtotal (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Subtotal (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Discount (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Discount (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "GST Amount (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "GST Amount (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Total Amount (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Total Amount (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Payment Mode",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Payment Mode",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Payment Status",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Payment Status",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Insurance Provider",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Insurance Provider",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Policy Number",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Policy Number",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Coverage Limit (INR)",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Coverage Limit (INR)",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										}
+									],
 									"typeConversion": true,
 									"typeConversionSettings": {
 										"allowDataTruncation": true,
@@ -92,8 +683,14 @@
 									"referenceName": "ds_dynamic_csv_source",
 									"type": "DatasetReference",
 									"parameters": {
-										"p_source_container": "@item().SourceContainer",
-										"p_source_filename": "@item().SourceFileName"
+										"p_source_container": {
+											"value": "@item().source_container",
+											"type": "Expression"
+										},
+										"p_source_filename": {
+											"value": "@item().source_file_pattern",
+											"type": "Expression"
+										}
 									}
 								}
 							],
@@ -102,8 +699,14 @@
 									"referenceName": "ds_dynamic_sql_sink",
 									"type": "DatasetReference",
 									"parameters": {
-										"p_target_schema": "@item().TargetSchema",
-										"p_target_table": "@item().TargetTable"
+										"p_target_schema": {
+											"value": "@item().target_schema",
+											"type": "Expression"
+										},
+										"p_target_table": {
+											"value": "@item().target_table",
+											"type": "Expression"
+										}
 									}
 								}
 							]
