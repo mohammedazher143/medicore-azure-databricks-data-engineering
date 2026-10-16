@@ -21,7 +21,10 @@
 				"value": "@dataset().p_target_schema",
 				"type": "Expression"
 			},
-			"table": "@dataset().p_target_table"
+			"table": {
+				"value": "@dataset().p_target_table",
+				"type": "Expression"
+			}
 		}
 	}
 }
