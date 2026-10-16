@@ -1,0 +1,88 @@
+{
+	"name": "ds_sql_metadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL_MediCore",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "metadata_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "source_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_type",
+				"type": "varchar"
+			},
+			{
+				"name": "source_container",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_folder",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_file_pattern",
+				"type": "nvarchar"
+			},
+			{
+				"name": "file_delimiter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "first_row_is_header",
+				"type": "bit"
+			},
+			{
+				"name": "text_qualifier",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_encoding",
+				"type": "nvarchar"
+			},
+			{
+				"name": "target_schema",
+				"type": "nvarchar"
+			},
+			{
+				"name": "target_table",
+				"type": "nvarchar"
+			},
+			{
+				"name": "load_type",
+				"type": "varchar"
+			},
+			{
+				"name": "watermark_column",
+				"type": "nvarchar"
+			},
+			{
+				"name": "is_active",
+				"type": "bit"
+			},
+			{
+				"name": "created_utc",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "modified_utc",
+				"type": "datetime2",
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "meta",
+			"table": "ETL_Metadata"
+		}
+	}
+}

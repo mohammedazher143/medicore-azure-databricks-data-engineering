@@ -1,9 +1,9 @@
 {
-	"name": "pl_metadata_driven_ingestion",
+	"name": "PL_MediCore_Metadata_Driven_Ingestion",
 	"properties": {
 		"activities": [
 			{
-				"name": "lk_read_pipeline_metadata",
+				"name": "Lookup_Active_Metadata",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -17,19 +17,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT SourceContainer, SourceFileName, TargetSchema, TargetTable FROM log.PipelineMetadataRegistry WHERE IsActive = 1;",
+						"sqlReaderQuery": "SELECT\n    metadata_id,\n    source_name,\n    source_type,\n    source_container,\n    source_folder,\n    source_file_pattern,\n    file_delimiter,\n    first_row_is_header,\n    text_qualifier,\n    source_encoding,\n    target_schema,\n    target_table,\n    load_type,\n    watermark_column\nFROM meta.ETL_Metadata\nWHERE is_active = 1\n  AND source_name = 'MediCore_Hospital_Raw';",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "ds_dynamic_sql_sink",
-						"type": "DatasetReference",
-						"parameters": {
-							"p_target_schema": "log",
-							"p_target_table": "PipelineMetadataRegistry"
-						}
+						"referenceName": "ds_sql_metadata",
+						"type": "DatasetReference"
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -37,7 +33,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "lk_read_pipeline_metadata",
+						"activity": "Lookup_Active_Metadata",
 						"dependencyConditions": [
 							"Succeeded"
 						]
