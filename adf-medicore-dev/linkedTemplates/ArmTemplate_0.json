@@ -117,7 +117,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
-					"firstRowAsHeader": false,
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": []
@@ -244,7 +244,6 @@
 											"type": "AzureSqlSink",
 											"writeBehavior": "insert",
 											"sqlWriterUseTableLock": false,
-											"tableOption": "autoCreate",
 											"disableMetricsCollection": false
 										},
 										"enableStaging": false,
